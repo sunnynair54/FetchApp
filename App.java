@@ -1,32 +1,42 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+//  these provide classes and methods for reading data
 import java.net.HttpURLConnection;
 import java.net.URI;
+//  allows me to open an HTTP connection and interact with the remote server
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+// provide classes and interfaces for working with lists, sorting elements, and storing data
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+// provide classes and methods for parsing, creating, and manipulating JSON objects and arrays
 
-public class Main {
+public class App {
 
     public static void main(String[] args) {
+        // Fetch the data from the URL
         String urlString = "https://fetch-hiring.s3.amazonaws.com/hiring.json";
+        // retrieve the JSON data from the URL and return a list of "Item" objects.
         List<Item> itemList = fetchData(urlString);
-
+// check for "null" items 
         if (itemList != null) {
+            // filter out "null" data
             itemList = filterItems(itemList);
+            // sort the date in ascending order
             itemList = sortItems(itemList);
+            // print out ItemIds
             displayItems(itemList);
         }
     }
 
     private static List<Item> fetchData(String urlString) {
+        // I need a place to store the data
         List<Item> itemList = new ArrayList<>();
 
         try {
