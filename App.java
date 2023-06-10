@@ -94,6 +94,11 @@ public class App {
         return itemList;
     }
 
+    /*
+     * added an edge case in case something slips through the cracks and it is
+     * double
+     * checks to make sure empty data is actually emtpy
+     */
     private static List<Item> filterItems(List<Item> itemList) {
         List<Item> filteredList = new ArrayList<>();
 
@@ -105,7 +110,7 @@ public class App {
 
         return filteredList;
     }
-
+// sort the data to their respective lists. If the ids match then they are the same
     private static List<Item> sortItems(List<Item> itemList) {
         Collections.sort(itemList, new Comparator<Item>() {
             @Override
