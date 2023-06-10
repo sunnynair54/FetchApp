@@ -2,7 +2,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
-import java.net.URL;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -12,11 +13,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class App {
+public class Main {
 
     public static void main(String[] args) {
-        String url = "https://fetch-hiring.s3.amazonaws.com/hiring.json";
-        List<Item> itemList = fetchData(url);
+        String urlString = "https://fetch-hiring.s3.amazonaws.com/hiring.json";
+        List<Item> itemList = fetchData(urlString);
 
         if (itemList != null) {
             itemList = filterItems(itemList);
@@ -29,7 +30,8 @@ public class App {
         List<Item> itemList = new ArrayList<>();
 
         try {
-            URL url = new URL(urlString);
+            URI uri = new URI(urlString);
+            URL url = uri.toURL();
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");
 
@@ -56,6 +58,8 @@ public class App {
             } else {
                 System.out.println("Error: " + responseCode);
             }
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
