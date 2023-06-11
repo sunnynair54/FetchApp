@@ -16,7 +16,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 // provide classes and methods for parsing, creating, and manipulating JSON objects and arrays
-
+/*Was not able to fix package issues */
 public class App {
 
     public static void main(String[] args) {
@@ -110,7 +110,9 @@ public class App {
 
         return filteredList;
     }
-// sort the data to their respective lists. If the ids match then they are the same
+
+    // sort the data to their respective lists. If the ids match then they are the
+    // same
     private static List<Item> sortItems(List<Item> itemList) {
         Collections.sort(itemList, new Comparator<Item>() {
             @Override
@@ -126,33 +128,34 @@ public class App {
         return itemList;
     }
 
+    // retrieve the item list and then loop through the list to display each item
     private static void displayItems(List<Item> itemList) {
         for (Item item : itemList) {
             System.out.println("List ID: " + item.getListId() + ", Name: " + item.getName());
         }
     }
 
-    private static class Item {
-        private int id;
-        private int listId;
-        private String name;
+    // private static class Item {
+    // private int id;
+    // private int listId;
+    // private String name;
 
-        public Item(int id, int listId, String name) {
-            this.id = id;
-            this.listId = listId;
-            this.name = name;
-        }
+    // public Item(int id, int listId, String name) {
+    // this.id = id;
+    // this.listId = listId;
+    // this.name = name;
+    // }
 
-        public int getId() {
-            return id;
-        }
+    // public int getId() {
+    // return id;
+    // }
 
-        public int getListId() {
-            return listId;
-        }
+    // public int getListId() {
+    // return listId;
+    // }
 
-        public String getName() {
-            return name;
-        }
-    }
+    // public String getName() {
+    // return name;
+    // }
+    // }
 }
